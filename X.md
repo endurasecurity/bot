@@ -31,7 +31,7 @@ After posting each quote tweet:
 ## Tasks
 
 ### 1. Audience Research
-Search X via the API for 10-15 recent posts using keywords relevant to Endura's space (e.g., "CI/CD security," "software supply chain," "pipeline threats," "DevSecOps," "SBOM"). Prioritize posts from:
+Search X via the API for 10-15 recent posts using keywords relevant to Endura's space (e.g., "CI/CD security," "software supply chain," "pipeline threats," "DevSecOps," "SBOM", "ebpf", "linux"). Prioritize posts from:
 - Security practitioners and engineers
 - DevOps/platform engineering professionals
 - CISOs or security leaders
