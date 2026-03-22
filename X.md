@@ -58,7 +58,7 @@ After posting each quote tweet, log the tweet ID and URL of your quote tweet for
 Compose one original X post from the Endura Security account and post it immediately via the API using OAuth 1.0a signing. Do not wait for approval. The post must:
 - Share a specific, opinionated take on a current trend or challenge in pipeline/supply chain security
 - Lead with the insight, not the product — no direct product pitches
-- Use 2-3 relevant hashtags at the end (e.g., #DevSecOps #SupplyChainSecurity #AppSec)
+- Use 2-3 relevant hashtags at the end. Such examples include but are not limited to: #DevSecOps #SupplyChainSecurity #AppSec, #ebpf, #linux
 - Stay under 280 characters
 - Read as a real human practitioner's voice: direct, conversational, slightly opinionated — not corporate or polished to the point of sounding artificial
 
