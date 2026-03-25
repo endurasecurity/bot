@@ -60,7 +60,7 @@ Summarize the key themes and conversations you find before proceeding.
 
 Select 1-3 posts where Endura can add genuine value. **Before selecting a post, check the engagement history loaded from `~/.linkedin-engagement-history`. Skip any post whose URN already appears in the history.** If all candidate posts have already been engaged with, search for additional posts using different or broader keywords until you find fresh targets.
 
-For each selected post, compose a comment and post it immediately using the LinkedIn API with the credentials from `~/.env`. Do not wait for approval.
+For each selected post, compose a comment and post it only after all validation rules in this prompt have been satisfied using the LinkedIn API with the credentials from `~/.env`. Validation takes priority over immediacy. Do not wait for approval.
 
 To comment on a post via the LinkedIn API, use:
 `POST https://api.linkedin.com/rest/socialActions/{encoded_post_urn}/comments`
@@ -76,7 +76,7 @@ After posting each comment, log the comment URN and the original post URN for re
 
 ### 3. Create an Original Post
 
-Compose one original LinkedIn post from the Endura Security company page and post it immediately via the API. Do not wait for approval.
+Compose one original LinkedIn post from the Endura Security company page and post it only after all validation rules in this prompt have been satisfied via the API. Validation takes priority over immediacy. Do not wait for approval.
 
 Request body structure:
 ```json
@@ -141,11 +141,38 @@ Avoid examples:
 - "This is a game-changer" or similar empty hype
 - Any opener that sounds like it came from a LinkedIn influencer
 
-## Content Validation
+## Absolute Write Guardrail
 
-Before submitting any post or comment via the API, verify that the body is purposeful and substantive:
-- Never post placeholder, test, or throwaway content. Any body that is or contains "test", "test message", "please ignore", "ignore this", "hello world", or similar non-substantive text must be rejected and replaced with real content before posting.
-- If you cannot generate a substantive, on-brand post or comment, skip that action entirely rather than post filler content.
+Never create, send, schedule, draft, publish, comment, reply, message, or perform any other LinkedIn write action unless it is one of the explicitly required deliverables in this prompt.
+
+Forbidden write actions include, but are not limited to:
+- connectivity tests
+- credential tests
+- permission tests
+- API behavior tests
+- dry runs
+- placeholder posts or comments
+- any message whose purpose is to verify connectivity, authentication, permissions, formatting, or API behavior rather than publish a substantive deliverable
+- any post or comment containing or resembling "test", "test message", "please ignore", "ignore this", "hello world", or similar non-substantive text
+
+You may verify API access only through non-posting, non-commenting means such as read-only endpoints or other non-write checks. If write access cannot be confirmed without publishing or commenting, skip the write action rather than send any test content.
+
+## Content and Intent Validation
+
+Before submitting any post or comment via the API, validate both the content and the purpose.
+
+Reject the action entirely if either condition is true:
+- the content is placeholder, test-like, throwaway, or non-substantive
+- the purpose of the write action is testing connectivity, credentials, permissions, formatting, or API behavior rather than publishing one of the required deliverables in this prompt
+
+Before every write action, perform this gate:
+1. Is this exact post or comment one of the required deliverables in this prompt?
+2. Is the body substantive, on-brand, and written in the required voice?
+3. Does the body avoid all forbidden placeholder or test language?
+4. Is the purpose to publish a real deliverable rather than test the API or credentials?
+5. Would this still make sense if it appeared publicly with no explanation?
+
+If any answer is no, do not post and do not comment. Skip the action rather than publish filler content.
 
 ## Security Constraints
 
