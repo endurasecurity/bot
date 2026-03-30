@@ -76,7 +76,7 @@ Supported Linux distributions: RHEL, Ubuntu, Debian, Rocky, Alma, CentOS, Oracle
 
 Use web search to identify 3-5 specific, real individuals who match the ICP above. For each prospect, research:
 
-1. **The individual**: Full name, current title, company, LinkedIn profile URL
+1. **The individual**: Full name, current title, company, and — critically — a professional email address
 2. **The company**: What they do, approximate size, industry, known tech stack or CI/CD tools if discoverable
 3. **ICP fit signals**: Why this person and company match the ICP — be specific (e.g., "company recently adopted SLSA framework," "prospect posted about pipeline security challenges," "company is in financial services with SOC 2 requirements")
 4. **Personalization hook**: A specific, verifiable detail that connects this prospect to Endura's value proposition. This could be:
@@ -92,34 +92,50 @@ Use web search to identify 3-5 specific, real individuals who match the ICP abov
 - Look at authors of relevant blog posts or articles on supply chain security
 - Check companies known to be investing in supply chain security programs
 
+**Email discovery is critical.** Outreach will be via email — LinkedIn InMail is not available. For each prospect, actively try to find a professional email address using these methods:
+- Check their personal blog, GitHub profile, or conference speaker bio — many practitioners list an email publicly
+- Look for the company's email format (e.g., first.last@company.com) via publicly available sources, then construct the prospect's likely address and note it as "inferred" in the `email_source` field
+- Check published papers, RFC contributions, or open-source project maintainer pages
+- Search for "[prospect name] email [company]" or look at their personal website/about page
+- If the company uses a known email format visible on team pages, press releases, or public filings, apply that pattern
+
+If you cannot find or reasonably infer an email address for a prospect, deprioritize them in favor of a prospect whose email is discoverable. Every lead in the final CSV should have an email address — "N/A" emails make the lead unusable.
+
 ### Step 2: Craft Personalized Outreach Messages
 
-For each prospect, write a short, personalized outreach message (LinkedIn message or email) that:
+For each prospect, write a very short, personalized cold email. These are cold emails — brevity is everything. If it looks long, nobody will read it.
 
-1. **Opens with the personalization hook** — reference something specific to them (their post, their company's initiative, a shared challenge in their industry). This must be real and verifiable, not generic.
-2. **Identifies the pain point** — connect their situation to the runtime enforcement gap. Frame the problem, not the product. Use language that resonates with practitioners, not marketing copy.
-3. **Introduces Endura with a single, sharp sentence** — what it does and why it matters for their specific situation. Do not list features.
-4. **Closes with a low-friction ask** — request a 15-20 minute conversation, not a demo. Make it easy to say yes.
+The intent of the message is NOT to sell or pitch. Endura is an early-stage company building a new approach to pipeline security using eBPF-based runtime enforcement. The goal is to get the prospect's feedback and perspective on this approach. You are asking for their expertise, not their budget. Frame this as a founder or early team member seeking input from a practitioner who lives this problem — because that is exactly what it is.
+
+The message structure is exactly this:
+1. **One sentence** referencing something specific to them (a post they wrote, a company initiative, a shared challenge). This must be real, not generic.
+2. **One sentence** framing what you're building and why you want their perspective specifically — acknowledge that you're early-stage and their experience with this problem matters.
+3. **One sentence** asking if they'd be open to a short conversation to share their honest take on the approach. The ask is for feedback, not a demo.
+
+That is 3 sentences. Do not exceed 3 sentences. Do not add a fourth sentence. Do not add a sign-off beyond your name.
 
 **Message guidelines:**
-- 4-6 sentences maximum. Respect their time.
-- Write like a peer, not a salesperson. No hype, no superlatives, no "game-changing" language.
+- 3 sentences maximum. No exceptions. Cold outreach gets skipped if it looks like effort to read.
+- Total message length must be under 50 words (excluding your name/title sign-off).
+- The tone is collaborative, not transactional. You are a builder asking a domain expert for input, not a rep qualifying a lead.
+- Write like a peer, not a salesperson. No hype, no superlatives.
 - Do not use emojis or excessive formatting.
 - Do not use phrases like: "I hope this message finds you well," "I'd love to pick your brain," "I came across your profile," "I noticed you're a leader in..."
-- Lead with their world, not yours. The first sentence should be about them, not about Endura.
-- The tone should match the company voice: direct, practitioner-informed, slightly opinionated. Think security engineer, not SDR.
+- Lead with their world, not yours. The first sentence is about them, never about Endura.
+- The tone should match a security engineer reaching out to a peer. Direct, specific, zero fluff.
 - Use plain ASCII only. No em dashes, curly quotes, or special characters.
 
 **Voice examples:**
-- Good: "Your post about the limits of SBOM-based security hit on something we keep hearing from platform teams — knowing what's in the build doesn't help if you can't control what it does at runtime."
-- Bad: "Hi! I'm reaching out from Endura Security, a cutting-edge startup that's revolutionizing CI/CD pipeline security with our innovative eBPF-based platform."
+- Good: "Your post on SBOM gaps mirrors what pushed us to start building eBPF-based runtime enforcement for CI/CD pipelines. We're early and trying to pressure-test the approach with people who actually deal with this. Would you be open to a 15-minute call to poke holes in what we're doing?"
+- Bad: "Hi! I'm reaching out from Endura Security, a cutting-edge startup that's revolutionizing CI/CD pipeline security with our innovative eBPF-based platform. I'd love to schedule some time to walk you through a demo of our solution and discuss how we can help your organization improve its security posture."
 
-### Step 3: Assess Outreach Channel
+### Step 3: Draft Email Subject Line
 
-For each prospect, recommend the best outreach channel:
-- **LinkedIn**: If you found them through LinkedIn activity or they are active posters
-- **Email**: If you found a professional email or they are more senior (CISO/VP level) and less active on social
-- **Conference follow-up**: If they recently spoke at or attended a relevant conference
+For each prospect, write a short email subject line (under 8 words) that:
+- Is specific to the prospect or their domain, not generic
+- Sounds like a peer reaching out, not a sales email
+- Does not include the company name "Endura" — keep it about them
+- Examples: "runtime enforcement for CI/CD - your take?" or "quick question on pipeline security"
 
 ## Output Format
 
@@ -132,16 +148,17 @@ Save all results to `/tmp/leads.csv` with the following exact format. Use these 
 | `prospect_name` | Full name of the individual | "Jane Smith" |
 | `title` | Current job title | "VP of Platform Engineering" |
 | `company` | Current employer | "Acme Corp" |
+| `email` | Professional email address | "jane.smith@acmecorp.com" |
+| `email_source` | How the email was found: "public" (listed on bio/site), "inferred" (pattern-matched from company format), or "verified" (confirmed via public source) | "inferred" |
 | `linkedin_url` | LinkedIn profile URL (or "N/A" if not found) | "https://www.linkedin.com/in/janesmith" |
-| `email` | Professional email (or "N/A" if not found) | "jane.smith@acmecorp.com" |
 | `company_industry` | Industry vertical | "Financial Services" |
 | `company_size` | Approximate employee count or range | "2000-5000" |
 | `icp_fit_signals` | Semicolon-separated list of specific ICP match reasons | "Uses GitHub Actions; Recently adopted SLSA; SOC 2 certified" |
 | `personalization_hook` | The specific detail used to personalize outreach | "Published blog post on pipeline security gaps in March 2026" |
-| `outreach_channel` | Recommended channel: LinkedIn, Email, or Conference | "LinkedIn" |
-| `outreach_message` | The full personalized outreach message | "Your recent post about..." |
+| `email_subject` | Short email subject line (under 8 words) | "runtime enforcement for CI/CD - your take?" |
+| `outreach_message` | The full personalized email body | "Your recent post about..." |
 | `persona_type` | Which ICP persona this maps to | "VP Platform Engineering" |
-| `research_source` | Where you found this prospect | "LinkedIn post search: CI/CD security" |
+| `research_source` | Where you found this prospect | "Conference speaker bio: KubeCon 2025" |
 | `date_identified` | Date this lead was identified (YYYY-MM-DD) | "2026-03-30" |
 
 ### CSV Rules
