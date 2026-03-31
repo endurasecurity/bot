@@ -72,9 +72,9 @@ Supported Linux distributions: RHEL, Ubuntu, Debian, Rocky, Alma, CentOS, Oracle
 
 ## Prospecting Instructions
 
-### Step 1: Research and Identify 3-5 Target Individuals
+### Step 1: Research and Identify 5 Target Individuals
 
-Use web search to identify 3-5 specific, real individuals who match the ICP above. For each prospect, research:
+Use web search to identify 5 specific, real individuals who match the ICP above. For each prospect, research:
 
 1. **The individual**: Full name, current title, company, and — critically — a professional email address
 2. **The company**: What they do, approximate size, industry, known tech stack or CI/CD tools if discoverable
@@ -155,7 +155,6 @@ Save all results to `/tmp/leads.csv` with the following exact format. Use these 
 | `company_size` | Approximate employee count or range | "2000-5000" |
 | `icp_fit_signals` | Semicolon-separated list of specific ICP match reasons | "Uses GitHub Actions; Recently adopted SLSA; SOC 2 certified" |
 | `personalization_hook` | The specific detail used to personalize outreach | "Published blog post on pipeline security gaps in March 2026" |
-| `email_subject` | Short email subject line (under 8 words) | "runtime enforcement for CI/CD - your take?" |
 | `outreach_message` | The full personalized email body | "Your recent post about..." |
 | `persona_type` | Which ICP persona this maps to | "VP Platform Engineering" |
 | `research_source` | Where you found this prospect | "Conference speaker bio: KubeCon 2025" |
