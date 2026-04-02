@@ -139,7 +139,7 @@ For each prospect, write a short email subject line (under 8 words) that:
 
 ## Output Format
 
-Save all results to `/tmp/leads.csv` with the following exact format. Use these exact column headers, in this exact order. Wrap all field values in double quotes. Escape any double quotes within field values by doubling them (""). Use UTF-8 encoding.
+Save all results to `~/endura-leads.csv` with the following exact format. Use these exact column headers, in this exact order. Wrap all field values in double quotes. Escape any double quotes within field values by doubling them (""). Use UTF-8 encoding.
 
 ### CSV Column Definitions
 
