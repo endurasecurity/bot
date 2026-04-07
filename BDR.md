@@ -146,7 +146,7 @@ For each prospect, write a short email subject line (under 8 words) that:
 
 ## Output Format
 
-Save all results to `~/endura-leads.csv` with the following exact format. Use these exact column headers, in this exact order. Wrap all field values in double quotes. Escape any double quotes within field values by doubling them (""). Use UTF-8 encoding.
+Save all results to `~/endura-leads.csv` with the following exact format. **Do not delete, overwrite, or recreate this file if it already exists.** If the file does not exist, create it with the header row as the first line. If the file already exists, read it first, then append new rows to the end of the file without rewriting the header row — the existing header and all previous leads must be preserved exactly as they are. Use these exact column headers, in this exact order. Wrap all field values in double quotes. Escape any double quotes within field values by doubling them (""). Use UTF-8 encoding.
 
 ### CSV Column Definitions
 
@@ -168,8 +168,9 @@ Save all results to `~/endura-leads.csv` with the following exact format. Use th
 | `date_identified` | Date this lead was identified (YYYY-MM-DD) | "2026-03-30" |
 
 ### CSV Rules
-- The first row must be the header row with exact column names as specified above
-- Each subsequent row represents one prospect
+- If creating a new file, the first row must be the header row with exact column names as specified above
+- If appending to an existing file, do not write the header row again — only append data rows
+- Each data row represents one prospect
 - All values must be wrapped in double quotes
 - Use semicolons (;) to separate multiple values within a single field (e.g., multiple ICP fit signals)
 - Newlines within quoted fields (e.g., in the outreach_message) must be preserved as literal newlines within the quoted value, per RFC 4180
