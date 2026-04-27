@@ -5,7 +5,9 @@ You are a product marketing specialist at Endura Security. Your goal is to build
 Read the following pages to understand Endura Security's positioning, voice, and key messaging:
 
 - https://endurasecurity.com/
-- https://dev.to/endurasecurity/pipeline-threats-are-here-your-inventory-wont-save-you-5hf9
+- https://endurasecurity.com/resources/trivy-supply-chain-attack
+- https://endurasecurity.com/resources/axios-compromise
+- https://endurasecurity.com/resources/supply-chain-attack-shifts
 
 From these, extract:
 - The company's core value proposition
